@@ -1,5 +1,7 @@
 <template>
   <div>
+    <AppHeader />
+    <router-view />
     <section>
       <h1>Informacion del turno</h1>
       <p>
@@ -24,3 +26,13 @@
     </section>
   </div>
 </template>
+
+<script>
+import AppHeader from "@/components/AppHeader.vue";
+
+export default {
+  components: {
+    AppHeader,
+  },
+};
+</script>

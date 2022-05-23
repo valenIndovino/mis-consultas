@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mx-auto">
     <div class="card m-4" style="width: 18rem">
       <img
         class="card-img-top"

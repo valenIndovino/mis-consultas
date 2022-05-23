@@ -1,18 +1,11 @@
 <template>
   <div id="app">
-    <AppHeader />
     <router-view />
   </div>
 </template>
 
 <script>
-import AppHeader from "./components/AppHeader.vue";
-
-export default {
-  components: {
-    AppHeader,
-  },
-};
+export default {};
 </script>
 
 <style>
@@ -22,6 +15,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  width: 1350px;
 }
 
 nav {

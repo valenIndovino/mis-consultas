@@ -1,5 +1,7 @@
 <template>
   <div class="about">
+    <AppHeader />
+    <router-view />
     <h1>Turnos</h1>
     <table class="table table-hover table-dark">
       <thead>
@@ -52,3 +54,13 @@
     </table>
   </div>
 </template>
+
+<script>
+import AppHeader from "@/components/AppHeader.vue";
+
+export default {
+  components: {
+    AppHeader,
+  },
+};
+</script>
