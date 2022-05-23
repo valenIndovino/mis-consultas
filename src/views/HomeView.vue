@@ -24,3 +24,10 @@ export default {
   },
 };
 </script>
+
+<style>
+html {
+  align-items: center;
+  width: 100%;
+}
+</style>

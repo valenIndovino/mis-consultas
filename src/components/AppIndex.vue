@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row m-4" style="width: 18rem">
+    <div class="card m-4" style="width: 18rem">
       <img
         class="card-img-top"
         src="https://www.infobae.com/new-resizer/QxAYoioVLyeBnOWAUg1ZfwMdD1s=/1200x628/filters:format(webp):quality(85)//cloudfront-us-east-1.images.arcpublishing.com/infobae/5KCVGAGSP5HFJA7KMALNP7ITS4.jpg"
