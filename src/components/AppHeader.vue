@@ -24,7 +24,7 @@
             <router-link class="nav-link" to="/turnos">Mis turnos</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link disabled" to="#"
+            <router-link class="nav-link" to="/login"
               >Cerrar Sesion</router-link
             >
           </li>
