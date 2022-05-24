@@ -22,7 +22,18 @@
     </section>
     <section>
       <h1>Conclusion del turno</h1>
-      <input type="file" />
+      <div class="mb-3">
+        <label for="formFileMultiple" class="form-label"
+          >Ingrese los documentos que quiere mandarle al paciente</label
+        >
+        <input
+          class="form-control mx-auto"
+          type="file"
+          id="formFileMultiple"
+          multiple
+          style="width: 600px"
+        />
+      </div>
     </section>
   </div>
 </template>

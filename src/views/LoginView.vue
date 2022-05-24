@@ -51,13 +51,14 @@
               </div>
 
               <div class="text-center text-lg-start mt-4 pt-2">
-                <button
+                <router-link
                   type="button"
                   class="btn btn-primary btn-lg"
                   style="padding-left: 2.5rem; padding-right: 2.5rem"
+                  to="/home"
                 >
                   Iniciar Sesion
-                </button>
+                </router-link>
               </div>
             </form>
           </div>
@@ -70,10 +71,6 @@
         <div class="text-white mb-3 mb-md-0">
           Copyright © Mis Consultas 2020. All rights reserved.
         </div>
-        <!-- Copyright -->
-
-        <!-- Right -->
-        <!-- Right -->
       </div>
     </section>
   </div>

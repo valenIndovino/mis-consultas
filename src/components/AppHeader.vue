@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
       <router-link class="navbar-brand" to="/home">MisConsultas</router-link>
       <button
         class="navbar-toggler"
