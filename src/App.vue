@@ -5,7 +5,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      usuarios: [],
+      url: "https://628c24e1a3fd714fd02d5a68.mockapi.io/Usuarios",
+    };
+  },
+
+  async created() {
+    const respuesta = await fetch(this.url);
+    this.usuarios = await respuesta.json();
+    console.log(this.usuarios);
+  },
+};
 </script>
 
 <style>
