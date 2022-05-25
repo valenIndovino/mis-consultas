@@ -12,7 +12,7 @@
             />
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form>
+            <form @click:submit.prevent>
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <input
@@ -20,6 +20,7 @@
                   id="form3Example3"
                   class="form-control form-control-lg"
                   placeholder="Ingrese su email"
+                  v-model="email"
                 />
                 <label class="form-label" for="form3Example3">Email</label>
               </div>
@@ -31,6 +32,7 @@
                   id="form3Example4"
                   class="form-control form-control-lg"
                   placeholder="Ingrese su contraseña"
+                  v-model="password"
                 />
                 <label class="form-label" for="form3Example4">Contraseña</label>
               </div>
@@ -49,16 +51,18 @@
                   </label>
                 </div>
               </div>
-
+              <div v-if="error" class="alert alert-danger" role="alert">
+                El usuario o contraseña son incorrectos
+              </div>
               <div class="text-center text-lg-start mt-4 pt-2">
-                <router-link
+                <button
                   type="button"
                   class="btn btn-primary btn-lg"
                   style="padding-left: 2.5rem; padding-right: 2.5rem"
-                  to="/home"
+                  v-on:click="login()"
                 >
                   Iniciar Sesion
-                </router-link>
+                </button>
               </div>
             </form>
           </div>
@@ -78,10 +82,67 @@
 
 <script>
 import LoginHeader from "../components/LoginHeader.vue";
+import axios from "axios";
+//import store from "../store/store.js";
+//import { useStore } from "../store/store.js";
 
 export default {
   components: {
     LoginHeader,
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+      error: false,
+    };
+  },
+  methods: {
+    login() {
+      console.log(this.email);
+      const URL_USER = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Usuarios";
+
+      const json = {
+        email: this.email,
+      };
+      axios
+        .get(URL_USER, { params: json })
+        .then((response) => {
+          if (response.data[0] != undefined) {
+            if (response.data[0].password == this.password) {
+              console.log(response.data[0].admin);
+              this.agregarUser(response.data[0]);
+              this.$router.push("/home");
+              /*if (response.data[0].admin) {
+              this.$router.push("/home");
+            } else {
+              this.$router.push("/info");
+            }*/
+            } else {
+              this.error = true;
+              console.log("Contraseña/Usuario incorrecto");
+            }
+          } else {
+            this.error = true;
+            console.log("Contraseña/Usuario incorrecto");
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    agregarUser(user) {
+      console.log("llamo a la funcion adduser");
+      console.log(user);
+      /*const storeUser = {
+        nombre: user.nombre,
+        apellido: user.apellido,
+        id: user.id,
+        email: user.email,
+        admin: user.admin,
+      };
+      useStore().addUser(storeUser)*/
+    },
   },
 };
 </script>

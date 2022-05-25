@@ -1,17 +1,21 @@
 import { defineStore } from "pinia";
 
 export const useStore = defineStore("login", {
-    state:()=>({
-        _autenticado: false,
-    }),
-    actions: {
-        autenticar(valor){
-            this._autenticado = valor;
-        },
+  state: () => ({
+    user: null,
+  }),
+  actions: {
+    autenticar(valor) {
+      this._autenticado = valor;
     },
-    getters: {
-        esAutenticado(){
-            return this._autenticado;
-        }
+    addUser(user) {
+      this.user = user;
+      console.log(this.user);
     },
+  },
+  getters: {
+    getUser() {
+      return this.user;
+    },
+  },
 });
