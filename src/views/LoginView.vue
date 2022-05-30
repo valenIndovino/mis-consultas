@@ -83,8 +83,7 @@
 <script>
 import LoginHeader from "../components/LoginHeader.vue";
 import axios from "axios";
-//import store from "../store/store.js";
-//import { useStore } from "../store/store.js";
+import store from "../store/store.js";
 
 export default {
   components: {
@@ -111,13 +110,13 @@ export default {
           if (response.data[0] != undefined) {
             if (response.data[0].password == this.password) {
               console.log(response.data[0].admin);
-              this.agregarUser(response.data[0]);
+              this.addUser(response.data[0]);
               this.$router.push("/home");
               /*if (response.data[0].admin) {
-              this.$router.push("/home");
-            } else {
-              this.$router.push("/info");
-            }*/
+                this.$router.push("/home");
+              } else {
+                this.$router.push("/home");
+              }*/
             } else {
               this.error = true;
               console.log("Contraseña/Usuario incorrecto");
@@ -131,17 +130,17 @@ export default {
           console.log(error);
         });
     },
-    agregarUser(user) {
+    addUser(user) {
       console.log("llamo a la funcion adduser");
       console.log(user);
-      /*const storeUser = {
+      const storeUser = {
         nombre: user.nombre,
         apellido: user.apellido,
         id: user.id,
         email: user.email,
         admin: user.admin,
       };
-      useStore().addUser(storeUser)*/
+      store.dispatch("addUser", storeUser);
     },
   },
 };

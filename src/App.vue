@@ -16,7 +16,6 @@ export default {
   async created() {
     const respuesta = await fetch(this.url);
     this.usuarios = await respuesta.json();
-    console.log(this.usuarios);
   },
 };
 </script>

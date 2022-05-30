@@ -12,7 +12,6 @@ const routes = [
   {
     path: "/home",
     name: "home",
-    //beforeEnter: checkAdminRights,
     component: HomeView,
   },
   {
@@ -35,12 +34,19 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  /*mode: 'history',
+  base: process.env.BASE_URL,*/
   routes,
 });
 
 /*function checkAdminRights(to, from, next) {
   console.log(store.getters.getUser, "user");
-  if (!store.getters.getUser.admin) {
+  if (store.getters.getUser != null) {
+    if (!store.getters.getUser?.admin) {
+      next("/");
+    } else {
+      next("/");
+    }
     next("/");
   } else {
     next();
