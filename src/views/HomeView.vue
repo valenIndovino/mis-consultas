@@ -2,10 +2,22 @@
   <div class="home">
     <AppHeader />
     <router-view />
-    <img
-      alt="Vue logo"
-      src="https://us.123rf.com/450wm/pikalvi/pikalvi1904/pikalvi190400168/120731228-dise%C3%B1o-de-logotipo-de-salud-logotipo-de-la-cl%C3%ADnica-empresa-farmac%C3%A9utica-logotipo-del-m%C3%A9dico-de-famil.jpg?ver=6"
-    />
+    <div class="principal vertical-centered-text" id="home">
+      <div class="col-md-8 cta">
+        <h1 style="font-weight: bold">BIENVENIDO</h1>
+        <h4>
+          Este software esta diseñado para que puedas tener todas tus consultas
+          al alcance de tu mano
+        </h4>
+        <p>
+          Comienza ahora creando tus primeros turnos para que los pacientes
+          puedan verlos
+        </p>
+        <a v-on:click="crearTurno()" class="btn btn-primary orange"
+          >CREAR TURNO</a
+        >
+      </div>
+    </div>
     <div class="row">
       <AppIndex
         v-for="turno in turnos"
@@ -49,6 +61,11 @@ export default {
       })
       .catch((err) => console.log(err.message));
   },
+  methods: {
+    async crearTurno() {
+      this.$router.push("/newTurno");
+    },
+  },
 };
 </script>
 
@@ -56,5 +73,25 @@ export default {
 html {
   align-items: center;
   width: 100%;
+}
+
+.principal {
+  background: red;
+  height: 90vh;
+  background: url("https://static.wixstatic.com/media/7869d1_f010cd7869fa47e88cd9d945642b1dd2~mv2.jpg/v1/fill/w_1000,h_583,al_c,q_90,usm_0.66_1.00_0.01/7869d1_f010cd7869fa47e88cd9d945642b1dd2~mv2.jpg")
+    no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.vertical-centered-text {
+  -ms-display: flex;
+  display: flex;
+  /* alineacion vertical */
+  align-items: center;
+  /* alineacion horizontal */
+  justify-content: center;
 }
 </style>

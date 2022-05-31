@@ -2,8 +2,27 @@
   <div class="mx-auto">
     <div class="card m-4" style="width: 18rem">
       <img
+        v-if="especialidad == 'Laboratorio'"
         class="card-img-top"
-        src="https://www.infobae.com/new-resizer/QxAYoioVLyeBnOWAUg1ZfwMdD1s=/1200x628/filters:format(webp):quality(85)//cloudfront-us-east-1.images.arcpublishing.com/infobae/5KCVGAGSP5HFJA7KMALNP7ITS4.jpg"
+        src="https://img.freepik.com/foto-gratis/hombre-analisis-sangre-laboratorio-analizando-muestra-sangre-medico-cientifico-o-investigador-laboratorio_378307-1418.jpg"
+        alt="Card image cap"
+      />
+      <img
+        v-else-if="especialidad == 'Clinico'"
+        class="card-img-top"
+        src="https://st2.depositphotos.com/1017986/7472/i/600/depositphotos_74720971-stock-photo-scientists-with-clipboard-and-microscope.jpg"
+        alt="Card image cap"
+      />
+      <img
+        v-else-if="especialidad == 'Cardiologia'"
+        class="card-img-top"
+        src="https://st.depositphotos.com/1000423/3080/i/600/depositphotos_30809335-stock-photo-doctor-with-tablet-pc.jpg"
+        alt="Card image cap"
+      />
+      <img
+        v-else
+        class="card-img-top"
+        src="https://www.integramedica.cl/integramedica/site/artic/20210624/imag/foto_0000000620210624162640.jpg"
         alt="Card image cap"
       />
       <div class="card-body">

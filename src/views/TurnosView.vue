@@ -3,11 +3,7 @@
     <AppHeader />
     <router-view />
     <h1>Turnos</h1>
-    <table
-      class="table table-hover table-dark"
-      v-for="turno in turnos"
-      :key="turno"
-    >
+    <table class="table table-hover table-dark">
       <thead>
         <tr>
           <th scope="col">Id</th>
@@ -18,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr v-for="turno in turnos" :key="turno">
           <th scope="row">{{ turno.id }}</th>
           <td>{{ turno.especialidad }}</td>
           <td>{{ turno.fecha }}</td>
