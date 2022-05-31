@@ -3,7 +3,11 @@
     <AppHeader />
     <router-view />
     <h1>Turnos</h1>
-    <table class="table table-hover table-dark">
+    <table
+      class="table table-hover table-dark"
+      v-for="turno in turnos"
+      :key="turno"
+    >
       <thead>
         <tr>
           <th scope="col">Id</th>
@@ -15,37 +19,11 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row">1</th>
-          <td>Laboratorio</td>
-          <td>DD/MM/AAAA - HH:MM:SS</td>
-          <td>6</td>
-          <td>
-            <router-link to="/info">Mas Info</router-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Kinesiologia</td>
-          <td>DD/MM/AAAA - HH:MM:SS</td>
-          <td>4</td>
-          <td>
-            <router-link to="/info">Mas Info</router-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Odontologia</td>
-          <td>DD/MM/AAAA - HH:MM:SS</td>
-          <td>2</td>
-          <td>
-            <router-link to="/info">Mas Info</router-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>Laboratorio</td>
-          <td>DD/MM/AAAA - HH:MM:SS</td>
-          <td>1</td>
+          <th scope="row">{{ turno.id }}</th>
+          <td>{{ turno.especialidad }}</td>
+          <td>{{ turno.fecha }}</td>
+          <td v-if="turno.user == null">Sin solicitar</td>
+          <td v-else>{{ turno.user }}</td>
           <td>
             <router-link to="/info">Mas Info</router-link>
           </td>
@@ -57,10 +35,31 @@
 
 <script>
 import AppHeader from "@/components/AppHeader.vue";
+import store from "../store/store.js";
 
 export default {
+  data() {
+    return {
+      turnos: [],
+    };
+  },
   components: {
     AppHeader,
+  },
+  mounted() {
+    const id = store.getters.getUser.id;
+    const url =
+      "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/?admin=" + id;
+    fetch(url, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        data.map((item) => {
+          this.turnos.push(item);
+        });
+      })
+      .catch((err) => console.log(err.message));
   },
 };
 </script>

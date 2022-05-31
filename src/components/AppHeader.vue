@@ -24,9 +24,16 @@
             <router-link class="nav-link" to="/turnos">Mis turnos</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/login"
-              >Cerrar Sesion</router-link
+            <a class="nav-link" v-on:click="logOut()">Cerrar Sesion</a>
+          </li>
+          <li>
+            <button
+              type="button"
+              class="btn btn-dark"
+              v-on:click="crearTurno()"
             >
+              Crear turno
+            </button>
           </li>
         </ul>
       </div>
@@ -35,7 +42,20 @@
 </template>
 
 <script>
-export default {};
+import store from "../store/store.js";
+
+export default {
+  name: "AppHeader",
+  methods: {
+    async crearTurno() {
+      this.$router.push("/newTurno");
+    },
+    logOut() {
+      store.dispatch("deleteUser");
+      this.$router.push("/login");
+    },
+  },
+};
 </script>
 
 <style></style>

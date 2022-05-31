@@ -9,9 +9,8 @@
       <div class="card-body">
         <h5 class="card-title">Proximo turno</h5>
         <p class="card-text">
-          Especialidad: especialidad <br />
-          Fecha: DD/MM/AAAA <br />
-          Horario: HH:MM:SS
+          Especialidad: {{ especialidad }} <br />
+          Fecha: {{ fecha }} <br />
         </p>
         <router-link class="btn btn-primary" to="/info">Ver turno</router-link>
       </div>
@@ -20,7 +19,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["especialidad", "fecha"],
+};
 </script>
 
 <style></style>

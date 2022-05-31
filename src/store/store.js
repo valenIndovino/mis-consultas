@@ -60,6 +60,11 @@ export default new Vuex.Store({
       state.user = user;
       console.log(state.user, "user state");
     },
+    deleteUser: (state) => {
+      console.log("logout");
+      state.user = null;
+      console.log(state.user);
+    },
   },
   actions: {
     agregar: ({ commit }, { product, quantity, total }) => {
@@ -73,6 +78,9 @@ export default new Vuex.Store({
     },
     addUser: ({ commit }, user) => {
       commit("addUser", user);
+    },
+    deleteUser: ({ commit }) => {
+      commit("deleteUser");
     },
   },
   getters: {
