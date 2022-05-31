@@ -1,36 +1,35 @@
 <template>
   <div>
     <AppHeader />
-    <form>
-      <h3>Crea un nuevo turno</h3>
-      <div class="form-group">
-        <label for="exampleFormControlInput1">Fecha y Hora</label>
-        <input
-          type="datetime-local"
-          class="form-control w-120"
-          id="exampleFormControlInput1"
-          placeholder="name@example.com"
-          style="width: 400px, text-align: center"
-          v-model="fecha"
-        />
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">Especialidad</label>
-        <select
-          class="form-control"
-          id="exampleFormControlSelect1"
-          v-model="especialidad"
-        >
-          <option>Laboratorio</option>
-          <option>Clinico</option>
-          <option>Kinesiologia</option>
-          <option>Cardiologia</option>
-        </select>
-      </div>
-      <div class="flex items-baseline justify-between">
-        <button type="button" v-on:click="newProd()" class="btn btn-primary">
-          Crear turno
-        </button>
+    <form
+      style="width: 500px; text-align: center; height: 500px"
+      class="border border-primary rounded m-4 mx-auto"
+    >
+      <h3 class="mt-4" style="font-weight: bold">Crea un nuevo turno</h3>
+      <div>
+        <div class="form-group m-5">
+          <label>Fecha y Hora</label>
+          <input
+            type="datetime-local"
+            class="form-control w-60 p-3 mx-auto"
+            v-model="fecha"
+          />
+        </div>
+        <div class="form-group m-5">
+          <label>Especialidad</label>
+          <select class="form-control w-60 mx-auto" v-model="especialidad">
+            <option disabled selected>Selecciona una opción</option>
+            <option>Laboratorio</option>
+            <option>Clinico</option>
+            <option>Kinesiologia</option>
+            <option>Cardiologia</option>
+          </select>
+        </div>
+        <div class="flex items-baseline justify-between">
+          <button type="button" v-on:click="newTurno()" class="btn btn-primary">
+            Crear turno
+          </button>
+        </div>
       </div>
     </form>
   </div>
@@ -53,7 +52,7 @@ export default {
     AppHeader,
   },
   methods: {
-    newProd() {
+    newTurno() {
       const URL_USER = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos";
       const json = {
         especialidad: this.especialidad,

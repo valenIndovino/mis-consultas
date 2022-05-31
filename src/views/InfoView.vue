@@ -2,7 +2,7 @@
   <div>
     <AppHeader />
     <router-view />
-    <section>
+    <section class="mx-auto">
       <h1>Informacion del turno</h1>
       <p>
         Especialidad: especialidad <br />

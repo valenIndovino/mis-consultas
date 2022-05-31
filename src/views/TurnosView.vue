@@ -3,7 +3,7 @@
     <AppHeader />
     <router-view />
     <h1>Turnos</h1>
-    <table class="table table-hover table-dark">
+    <table class="table table-hover table-primary">
       <thead>
         <tr>
           <th scope="col">Id</th>
