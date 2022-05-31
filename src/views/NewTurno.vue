@@ -66,7 +66,7 @@ export default {
         .post(URL_USER, json)
         .then((data) => {
           console.log(data);
-          this.$router.push("/home");
+          this.$router.push("/loading");
         })
         .catch((e) => {
           console.log(e);
