@@ -59,6 +59,7 @@ export default {
         fecha: this.fecha,
         admin: store.getters.getUser.id,
         user: null,
+        estado: "Disponible",
       };
 
       axios

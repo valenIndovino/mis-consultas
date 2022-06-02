@@ -26,12 +26,33 @@
         alt="Card image cap"
       />
       <div class="card-body">
-        <h5 class="card-title">Proximo turno</h5>
+        <h5 v-if="estado == 'Disponible'" class="card-title">
+          Turno Disponible
+        </h5>
+        <h5 v-else-if="estado == 'Programado'" class="card-title">
+          Proximo Turno
+        </h5>
+        <h5 v-else-if="estado == 'Finalizado'" class="card-title">
+          Turno Finalizado
+        </h5>
+        <h5 v-else class="card-title">Turno Cancelado</h5>
         <p class="card-text">
           Especialidad: {{ especialidad }} <br />
           Fecha: {{ fecha }} <br />
+          Paciente: {{ paciente == null ? "Sin paciente" : paciente }} <br />
         </p>
-        <router-link class="btn btn-primary" to="/info">Ver turno</router-link>
+        <router-link
+          v-if="logueado == 'administrador'"
+          class="btn btn-primary"
+          to="/info"
+          >Ver turno</router-link
+        >
+        <a
+          v-else-if="logueado == 'usuario'"
+          class="btn btn-primary"
+          v-on:click="solicitarTurno()"
+          >Solicitar turno</a
+        >
       </div>
     </div>
   </div>
@@ -39,7 +60,10 @@
 
 <script>
 export default {
-  props: ["especialidad", "fecha"],
+  props: ["especialidad", "fecha", "paciente", "estado", "logueado"],
+  methods: {
+    solicitarTurno() {},
+  },
 };
 </script>
 

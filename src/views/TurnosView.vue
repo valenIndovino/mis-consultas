@@ -9,6 +9,7 @@
           <th scope="col">Id</th>
           <th scope="col">Especialidad</th>
           <th scope="col">Fecha y Hora</th>
+          <th scope="col">Estado</th>
           <th scope="col">Id Paciente</th>
           <th scope="col">Info</th>
         </tr>
@@ -18,6 +19,7 @@
           <th scope="row">{{ turno.id }}</th>
           <td>{{ turno.especialidad }}</td>
           <td>{{ turno.fecha }}</td>
+          <td>{{ turno.estado }}</td>
           <td v-if="turno.user == null">Sin solicitar</td>
           <td v-else>{{ turno.user }}</td>
           <td>

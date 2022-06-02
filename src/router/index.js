@@ -7,6 +7,7 @@ import LoginView from "../views/LoginView.vue";
 import NewTurno from "../views/NewTurno.vue";
 import UserView from "../views/UserView.vue";
 import LoadingView from "../views/LoadingView.vue";
+import DisponiblesView from "../views/DisponiblesView.vue";
 import store from "../store/store.js";
 
 Vue.use(VueRouter);
@@ -50,8 +51,14 @@ const routes = [
   {
     path: "/user",
     name: "user",
-    beforeEnter: checkAdminRights,
+    //beforeEnter: checkAdminRights,
     component: UserView,
+  },
+  {
+    path: "/disponibles",
+    name: "dispoibles",
+    //beforeEnter: checkAdminRights,
+    component: DisponiblesView,
   },
   {
     path: "/loading",

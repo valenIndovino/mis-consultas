@@ -2,31 +2,16 @@
   <div class="home">
     <AppHeader />
     <router-view />
-    <div class="principal vertical-centered-text" id="home">
-      <div class="col-md-8 cta">
-        <h1 style="font-weight: bold">BIENVENIDO</h1>
-        <h4>
-          Este software esta diseñado para que puedas tener todas tus consultas
-          al alcance de tu mano
-        </h4>
-        <p>
-          Comienza ahora creando tus primeros turnos para que los pacientes
-          puedan verlos
-        </p>
-        <a v-on:click="crearTurno()" class="btn btn-primary orange"
-          >CREAR TURNO</a
-        >
-      </div>
-    </div>
     <div class="row">
       <AppIndex
-        v-for="turno in turnos"
+        v-for="turno in turnosDisponibles"
         :key="turno.name"
         :especialidad="turno.especialidad"
         :fecha="turno.fecha"
         :paciente="turno.user"
+        :medico="turno.admin"
         :estado="turno.estado"
-        :logueado="'administrador'"
+        :logueado="'usuario'"
       />
     </div>
   </div>
@@ -36,13 +21,12 @@
 // @ is an alias to /src
 import AppIndex from "@/components/AppIndex.vue";
 import AppHeader from "@/components/AppHeader.vue";
-import store from "../store/store.js";
 
 export default {
   name: "HomeView",
   data() {
     return {
-      turnos: [],
+      turnosDisponibles: [],
     };
   },
   components: {
@@ -50,24 +34,17 @@ export default {
     AppHeader,
   },
   mounted() {
-    const id = store.getters.getUser.id;
-    const url =
-      "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/?admin=" + id;
+    const url = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/?user=null";
     fetch(url, {
       method: "GET",
     })
       .then((res) => res.json())
       .then((data) => {
         data.map((item) => {
-          this.turnos.push(item);
+          this.turnosDisponibles.push(item);
         });
       })
       .catch((err) => console.log(err.message));
-  },
-  methods: {
-    async crearTurno() {
-      this.$router.push("/newTurno");
-    },
   },
 };
 </script>
