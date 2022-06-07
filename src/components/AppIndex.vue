@@ -22,7 +22,7 @@
         <router-link
           v-if="logueado == 'administrador' || logueado == 'especial'"
           class="btn btn-primary"
-          to="/info"
+          :to="{ name: 'info', params: { turno: id } }"
           >Ver turno</router-link
         >
         <a v-else class="btn btn-primary" v-on:click="solicitarTurno()"

@@ -30,6 +30,7 @@
         :estado="turno.estado"
         :logueado="'especial'"
         :admin="turno.admin"
+        :id="turno.id"
       />
     </div>
   </div>

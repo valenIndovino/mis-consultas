@@ -23,7 +23,9 @@
           <td v-if="turno.user == null">Sin solicitar</td>
           <td v-else>{{ turno.user }}</td>
           <td>
-            <router-link to="/info">Mas Info</router-link>
+            <router-link :to="{ name: 'info', params: { turno: turno.id } }"
+              >Mas Info</router-link
+            >
           </td>
         </tr>
       </tbody>
@@ -46,8 +48,12 @@ export default {
   },
   mounted() {
     const id = store.getters.getUser.id;
-    const url =
-      "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/?admin=" + id;
+    const user = store.getters.getUsuarios.find((item) => item.id === id);
+    let url = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/?admin=" + id;
+    if (!user.admin) {
+      url = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/?user=" + id;
+    }
+
     fetch(url, {
       method: "GET",
     })

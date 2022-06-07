@@ -27,7 +27,7 @@ const routes = [
     component: TurnosView,
   },
   {
-    path: "/info",
+    path: "/info/:turno",
     name: "info",
     beforeEnter: checkBoths,
     component: InfoView,

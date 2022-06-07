@@ -31,6 +31,7 @@
         :estado="turno.estado"
         :logueado="'administrador'"
         :admin="turno.admin"
+        :id="turno.id"
       />
     </div>
   </div>
