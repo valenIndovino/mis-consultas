@@ -69,8 +69,6 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  /*mode: 'history',
-  base: process.env.BASE_URL,*/
   routes,
 });
 
@@ -89,5 +87,21 @@ function checkAdminRights(to, from, next) {
     console.log("NO ESTA LOGUEADO");
   }
 }
+
+/*function checkUserRights(to, from, next) {
+  console.log(store.getters.getUser, "user");
+  if (store.getters.getUser != null) {
+    if (!store.getters.getUser?.admin) {
+      console.log("Es USER");
+      next();
+    } else {
+      console.log("Es USER");
+      next("/user");
+    }
+  } else {
+    next("/login");
+    console.log("NO ESTA LOGUEADO");
+  }
+}*/
 
 export default router;

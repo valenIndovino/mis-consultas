@@ -111,12 +111,12 @@ export default {
             if (response.data[0].password == this.password) {
               console.log(response.data[0].admin);
               this.addUser(response.data[0]);
-              this.$router.push("/home");
-              /*if (response.data[0].admin) {
+              //this.$router.push("/home");
+              if (response.data[0].admin) {
                 this.$router.push("/home");
               } else {
-                this.$router.push("/home");
-              }*/
+                this.$router.push("/user");
+              }
             } else {
               this.error = true;
               console.log("Contraseña/Usuario incorrecto");
@@ -133,6 +133,7 @@ export default {
     addUser(user) {
       console.log("llamo a la funcion adduser");
       console.log(user);
+      console.log(user.id);
       const storeUser = {
         nombre: user.nombre,
         apellido: user.apellido,

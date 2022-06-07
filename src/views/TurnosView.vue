@@ -17,9 +17,9 @@
       <tbody>
         <tr v-for="turno in turnos" :key="turno">
           <th scope="row">{{ turno.id }}</th>
-          <td>{{ turno.especialidad }}</td>
+          <td>{{ getEspecialidadById(turno.especialidad) }}</td>
           <td>{{ turno.fecha }}</td>
-          <td>{{ turno.estado }}</td>
+          <td>{{ getEstadoById(turno.especialidad) }}</td>
           <td v-if="turno.user == null">Sin solicitar</td>
           <td v-else>{{ turno.user }}</td>
           <td>
@@ -58,6 +58,14 @@ export default {
         });
       })
       .catch((err) => console.log(err.message));
+  },
+  methods: {
+    getEspecialidadById(id) {
+      return store.getters.getEspecialidadById(id);
+    },
+    getEstadoById(id) {
+      return store.getters.getEstadoById(id);
+    },
   },
 };
 </script>

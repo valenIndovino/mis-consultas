@@ -12,6 +12,7 @@
         :medico="turno.admin"
         :estado="turno.estado"
         :logueado="'usuario'"
+        :id="turno.id"
       />
     </div>
   </div>

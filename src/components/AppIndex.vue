@@ -2,42 +2,14 @@
   <div class="mx-auto">
     <div class="card m-4" style="width: 18rem">
       <img
-        v-if="especialidad == 'Laboratorio'"
         class="card-img-top"
-        src="https://img.freepik.com/foto-gratis/hombre-analisis-sangre-laboratorio-analizando-muestra-sangre-medico-cientifico-o-investigador-laboratorio_378307-1418.jpg"
-        alt="Card image cap"
-      />
-      <img
-        v-else-if="especialidad == 'Clinico'"
-        class="card-img-top"
-        src="https://st2.depositphotos.com/1017986/7472/i/600/depositphotos_74720971-stock-photo-scientists-with-clipboard-and-microscope.jpg"
-        alt="Card image cap"
-      />
-      <img
-        v-else-if="especialidad == 'Cardiologia'"
-        class="card-img-top"
-        src="https://st.depositphotos.com/1000423/3080/i/600/depositphotos_30809335-stock-photo-doctor-with-tablet-pc.jpg"
-        alt="Card image cap"
-      />
-      <img
-        v-else
-        class="card-img-top"
-        src="https://www.integramedica.cl/integramedica/site/artic/20210624/imag/foto_0000000620210624162640.jpg"
+        :src="especialidad.imagen"
         alt="Card image cap"
       />
       <div class="card-body">
-        <h5 v-if="estado == 'Disponible'" class="card-title">
-          Turno Disponible
-        </h5>
-        <h5 v-else-if="estado == 'Programado'" class="card-title">
-          Proximo Turno
-        </h5>
-        <h5 v-else-if="estado == 'Finalizado'" class="card-title">
-          Turno Finalizado
-        </h5>
-        <h5 v-else class="card-title">Turno Cancelado</h5>
+        <h5 class="card-title">Turno {{ estado.nombre }}</h5>
         <p class="card-text">
-          Especialidad: {{ especialidad }} <br />
+          Especialidad: {{ especialidad.nombre }} <br />
           Fecha: {{ fecha }} <br />
           Paciente: {{ paciente == null ? "Sin paciente" : paciente }} <br />
         </p>
@@ -59,10 +31,54 @@
 </template>
 
 <script>
+import store from "../store/store.js";
+import axios from "axios";
+
 export default {
-  props: ["especialidad", "fecha", "paciente", "estado", "logueado"],
+  props: ["especialidad", "fecha", "paciente", "estado", "logueado", "id"],
+  data() {
+    return {
+      turno: {
+        especialidad: "",
+        admin: "",
+        user: "",
+        estado: "",
+        id: "",
+        fecha: "",
+      },
+      idTurno: this.id,
+    };
+  },
   methods: {
-    solicitarTurno() {},
+    solicitarTurno() {
+      const URL =
+        "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/?id=" +
+        this.idTurno;
+      const idLogueado = store.getters.getUser.id;
+      fetch(URL, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          (this.turno.especialidad = response[0].especialidad),
+            (this.turno.admin = response[0].admin),
+            (this.turno.user = idLogueado),
+            (this.turno.estado = store.getters.getEstados[1].id),
+            (this.turno.id = response[0].id),
+            (this.turno.fecha = response[0].fecha);
+          axios
+            .put(
+              "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/" +
+                this.idTurno,
+              this.turno
+            )
+            .then((data) => {
+              console.log(data);
+            });
+        })
+        .catch((err) => console.log(err.message));
+      console.log("TURNO", this.turno);
+    },
   },
 };
 </script>

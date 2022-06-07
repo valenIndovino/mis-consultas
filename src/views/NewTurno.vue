@@ -17,12 +17,17 @@
         </div>
         <div class="form-group m-5">
           <label>Especialidad</label>
-          <select class="form-control w-60 mx-auto" v-model="especialidad">
+          <select
+            class="form-control w-60 mx-auto"
+            v-model="especialidadSeleccionada"
+          >
             <option disabled selected>Selecciona una opción</option>
-            <option>Laboratorio</option>
-            <option>Clinico</option>
-            <option>Kinesiologia</option>
-            <option>Cardiologia</option>
+            <option
+              v-for="especialidad in especialidades"
+              :key="especialidad.id"
+            >
+              {{ especialidad.nombre }}
+            </option>
           </select>
         </div>
         <div class="flex items-baseline justify-between">
@@ -44,8 +49,10 @@ export default {
 
   data() {
     return {
-      especialidad: "",
+      especialidadSeleccionada: "",
       fecha: "",
+      especialidades: store.getters.getEspecialidades,
+      estados: store.getters.getEstados,
     };
   },
   components: {
@@ -53,13 +60,19 @@ export default {
   },
   methods: {
     newTurno() {
+      const especialidadId = this.especialidades.find(
+        (item) => item.nombre === this.especialidadSeleccionada
+      ).id;
+      const estadoId = this.estados.find(
+        (item) => item.nombre === "Disponible"
+      ).id;
       const URL_USER = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos";
       const json = {
-        especialidad: this.especialidad,
+        especialidad: especialidadId,
         fecha: this.fecha,
         admin: store.getters.getUser.id,
         user: null,
-        estado: "Disponible",
+        estado: estadoId,
       };
 
       axios

@@ -18,6 +18,9 @@
         >
       </div>
     </div>
+    <div>
+      <h2 class="mt-4">Proximos turnos</h2>
+    </div>
     <div class="row">
       <AppIndex
         v-for="turno in turnos"
@@ -58,9 +61,14 @@ export default {
     })
       .then((res) => res.json())
       .then((data) => {
-        data.map((item) => {
-          this.turnos.push(item);
-        });
+        console.log("esto es", data);
+        console.log("ESTADO", store.getters.getEstados[1].id);
+        console.log("ESTADO NOMBRE", store.getters.getEstados[1].nombre);
+        const filtrado = data.filter(
+          (item) => item.estado == store.getters.getEstados[1].id
+        );
+        console.log("FILTRADO", filtrado);
+        this.turnos = filtrado;
       })
       .catch((err) => console.log(err.message));
   },

@@ -5,17 +5,27 @@
 </template>
 
 <script>
+import store from "./store/store.js";
+
 export default {
   data() {
     return {
-      usuarios: [],
-      url: "https://628c24e1a3fd714fd02d5a68.mockapi.io/Usuarios",
+      especialidades: [],
+      estados: [],
     };
   },
 
   async created() {
-    const respuesta = await fetch(this.url);
-    this.usuarios = await respuesta.json();
+    const respuesta = await fetch(
+      "https://628c24e1a3fd714fd02d5a68.mockapi.io/Especialidades"
+    );
+    this.especialidades = await respuesta.json();
+    const estados = await fetch(
+      "https://628c24e1a3fd714fd02d5a68.mockapi.io/Estado"
+    );
+    this.estados = await estados.json();
+    store.dispatch("addEspecialidades", this.especialidades);
+    store.dispatch("addEstados", this.estados);
   },
 };
 </script>
