@@ -66,10 +66,12 @@ export default {
       const estadoId = this.estados.find(
         (item) => item.nombre === "Disponible"
       ).id;
+      console.log("ESPECIALIDAD..", especialidadId);
+      console.log("ESTADO..", estadoId);
       const URL_USER = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos";
       const json = {
         especialidad: especialidadId,
-        fecha: this.fecha,
+        fecha: this.fecha.replace("T", " || "),
         admin: store.getters.getUser.id,
         user: null,
         estado: estadoId,

@@ -19,7 +19,7 @@
           <th scope="row">{{ turno.id }}</th>
           <td>{{ getEspecialidadById(turno.especialidad) }}</td>
           <td>{{ turno.fecha }}</td>
-          <td>{{ getEstadoById(turno.especialidad) }}</td>
+          <td>{{ getEstadoById(turno.estado) }}</td>
           <td v-if="turno.user == null">Sin solicitar</td>
           <td v-else>{{ turno.user }}</td>
           <td>

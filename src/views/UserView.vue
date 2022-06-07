@@ -28,7 +28,8 @@
         :fecha="turno.fecha"
         :paciente="turno.user"
         :estado="turno.estado"
-        :logueado="'administrador'"
+        :logueado="'especial'"
+        :admin="turno.admin"
       />
     </div>
   </div>
@@ -59,12 +60,13 @@ export default {
     })
       .then((res) => res.json())
       .then((data) => {
-        data.map((item) => {
-          if (item.estado.nombre === "Programado")
-            this.turnosSolicitados.push(item);
-        });
+        const filtrado = data.filter(
+          (item) => item.estado == store.getters.getEstados[1].id
+        );
+        this.turnosSolicitados = filtrado;
       })
       .catch((err) => console.log(err.message));
+    console.log(this.turnosSolicitados);
   },
 };
 </script>

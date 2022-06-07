@@ -12,6 +12,8 @@ export default {
     return {
       especialidades: [],
       estados: [],
+      turnos: [],
+      usuarios: [],
     };
   },
 
@@ -24,8 +26,19 @@ export default {
       "https://628c24e1a3fd714fd02d5a68.mockapi.io/Estado"
     );
     this.estados = await estados.json();
+    const turnos = await fetch(
+      "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos"
+    );
+    this.turnos = await turnos.json();
+    const usuarios = await fetch(
+      "https://628c24e1a3fd714fd02d5a68.mockapi.io/Usuarios"
+    );
+    this.usuarios = await usuarios.json();
+    console.log("USUARIOS", this.usuarios);
     store.dispatch("addEspecialidades", this.especialidades);
     store.dispatch("addEstados", this.estados);
+    store.dispatch("addTurnos", this.turnos);
+    store.dispatch("addUsuarios", this.usuarios);
   },
 };
 </script>

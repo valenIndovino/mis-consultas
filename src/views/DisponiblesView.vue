@@ -9,7 +9,7 @@
         :especialidad="turno.especialidad"
         :fecha="turno.fecha"
         :paciente="turno.user"
-        :medico="turno.admin"
+        :admin="turno.admin"
         :estado="turno.estado"
         :logueado="'usuario'"
         :id="turno.id"

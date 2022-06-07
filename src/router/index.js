@@ -8,6 +8,7 @@ import NewTurno from "../views/NewTurno.vue";
 import UserView from "../views/UserView.vue";
 import LoadingView from "../views/LoadingView.vue";
 import DisponiblesView from "../views/DisponiblesView.vue";
+import LoadingUserView from "../views/LoadingUserView.vue";
 import store from "../store/store.js";
 
 Vue.use(VueRouter);
@@ -22,13 +23,13 @@ const routes = [
   {
     path: "/turnos",
     name: "turnos",
-    beforeEnter: checkAdminRights,
+    beforeEnter: checkBoths,
     component: TurnosView,
   },
   {
     path: "/info",
     name: "info",
-    beforeEnter: checkAdminRights,
+    beforeEnter: checkBoths,
     component: InfoView,
   },
   {
@@ -51,13 +52,13 @@ const routes = [
   {
     path: "/user",
     name: "user",
-    //beforeEnter: checkAdminRights,
+    beforeEnter: checkUserRights,
     component: UserView,
   },
   {
     path: "/disponibles",
     name: "dispoibles",
-    //beforeEnter: checkAdminRights,
+    beforeEnter: checkUserRights,
     component: DisponiblesView,
   },
   {
@@ -65,6 +66,12 @@ const routes = [
     name: "loading",
     beforeEnter: checkAdminRights,
     component: LoadingView,
+  },
+  {
+    path: "/loadingUser",
+    name: "loadingUser",
+    beforeEnter: checkUserRights,
+    component: LoadingUserView,
   },
 ];
 
@@ -88,20 +95,36 @@ function checkAdminRights(to, from, next) {
   }
 }
 
-/*function checkUserRights(to, from, next) {
+function checkUserRights(to, from, next) {
   console.log(store.getters.getUser, "user");
   if (store.getters.getUser != null) {
-    if (!store.getters.getUser?.admin) {
+    if (store.getters.getUser?.admin) {
       console.log("Es USER");
-      next();
+      next("/home");
     } else {
       console.log("Es USER");
-      next("/user");
+      next();
     }
   } else {
     next("/login");
     console.log("NO ESTA LOGUEADO");
   }
-}*/
+}
+
+function checkBoths(to, from, next) {
+  console.log(store.getters.getUser, "user");
+  if (store.getters.getUser != null) {
+    if (store.getters.getUser?.admin) {
+      console.log("Es USER");
+      next();
+    } else {
+      console.log("Es USER");
+      next();
+    }
+  } else {
+    next("/login");
+    console.log("NO ESTA LOGUEADO");
+  }
+}
 
 export default router;

@@ -30,6 +30,7 @@
         :paciente="turno.user"
         :estado="turno.estado"
         :logueado="'administrador'"
+        :admin="turno.admin"
       />
     </div>
   </div>
