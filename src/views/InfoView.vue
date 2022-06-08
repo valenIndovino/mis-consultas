@@ -1,7 +1,6 @@
 <template>
   <div class="mx-auto">
     <AppHeader />
-    <router-view />
     <section>
       <h1>Informacion del Turno</h1>
       <p>
