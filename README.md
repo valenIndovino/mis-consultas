@@ -1,24 +1,27 @@
-# proyecto-pnt2
+# PROYECTO NUEVAS TECNOLOGIAS 2
 
-## Project setup
+## Idea del proyecto
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+Sistema sobre la gestion de turnos para un consultorio medico
 ```
 
-### Compiles and minifies for production
+### Entorno de desarrollo
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+VUE.JS
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Integrantes del equipo
+```
+-Valentino Indovino
+-Bruno Franca
+-Alan Buengueroff
+-Ljubo Novakovich
+```
+
+### Docente
+```
+Gaspar De Carlo
+```
+
+### Año
+Julio 2022
