@@ -8,7 +8,6 @@ import NewTurno from "../views/NewTurno.vue";
 import UserView from "../views/UserView.vue";
 import LoadingView from "../views/LoadingView.vue";
 import DisponiblesView from "../views/DisponiblesView.vue";
-import LoadingUserView from "../views/LoadingUserView.vue";
 import store from "../store/store.js";
 
 Vue.use(VueRouter);
@@ -62,16 +61,10 @@ const routes = [
     component: DisponiblesView,
   },
   {
-    path: "/loading",
+    path: "/loading/:msg/:admin",
     name: "loading",
-    beforeEnter: checkAdminRights,
+    beforeEnter: checkBoths,
     component: LoadingView,
-  },
-  {
-    path: "/loadingUser",
-    name: "loadingUser",
-    beforeEnter: checkUserRights,
-    component: LoadingUserView,
   },
 ];
 

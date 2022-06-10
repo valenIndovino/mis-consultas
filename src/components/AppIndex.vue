@@ -87,7 +87,9 @@ export default {
             )
             .then((data) => {
               console.log(data);
-              this.$router.push("/loadingUser");
+              this.$router.push(
+                `/loading/${"Turno solicitado con exito"}/${false}`
+              );
             });
         })
         .catch((err) => console.log(err.message));

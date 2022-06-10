@@ -81,7 +81,7 @@ export default {
         .post(URL_USER, json)
         .then((data) => {
           console.log(data);
-          this.$router.push("/loading");
+          this.$router.push(`/loading/${"Turno creado con exito"}/${true}`);
         })
         .catch((e) => {
           console.log(e);

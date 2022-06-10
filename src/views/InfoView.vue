@@ -50,12 +50,31 @@
         </label>
       </div>
     </section>
+    <section>
+      <button
+        v-if="admin"
+        type="button"
+        class="btn btn-danger m-3"
+        v-on:click="eliminarTurno()"
+      >
+        Eliminar turno
+      </button>
+      <button
+        v-else
+        type="button"
+        class="btn btn-danger m-3"
+        v-on:click="cancelarTurno()"
+      >
+        Cancelar turno
+      </button>
+    </section>
   </div>
 </template>
 
 <script>
 import AppHeader from "@/components/AppHeader.vue";
 import store from "../store/store.js";
+import axios from "axios";
 
 export default {
   components: {
@@ -81,6 +100,37 @@ export default {
         (item) => item.id === this.turno.estado
       );
       return estado.nombre;
+    },
+    eliminarTurno() {},
+    cancelarTurno() {
+      const URL =
+        "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/?id=" +
+        this.turno.id;
+
+      fetch(URL, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          (this.turno.especialidad = response[0].especialidad),
+            (this.turno.admin = response[0].admin),
+            (this.turno.user = null),
+            (this.turno.estado = store.getters.getEstados[0].id),
+            (this.turno.id = response[0].id),
+            (this.turno.fecha = response[0].fecha);
+          axios
+            .put(
+              "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/" +
+                this.turno.id,
+              this.turno
+            )
+            .then((data) => {
+              console.log(data);
+              this.$router.push(
+                `/loading/${"Turno cancelado con exito"}/${false}`
+              );
+            });
+        });
     },
   },
   created() {

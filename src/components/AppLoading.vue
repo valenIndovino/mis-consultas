@@ -10,7 +10,7 @@
     </div>
     <div v-else class="flex justify-center items-center h-96">
       <div class="p-1 border-2 shadow-lg">
-        <h1 class="font-bold">Turno solicitado con éxito</h1>
+        <h1 class="font-bold">{{ msg }}</h1>
       </div>
     </div>
   </div>
@@ -28,12 +28,17 @@ export default {
   components: {
     AppHeader,
   },
+  props: ["msg", "admin"],
   mounted() {
     setTimeout(() => {
       this.spinner = false;
     }, 3000);
     setTimeout(() => {
-      this.$router.push("/user");
+      if (this.admin) {
+        this.$router.push("/home");
+      } else {
+        this.$router.push("/user");
+      }
     }, 5000);
   },
 };
