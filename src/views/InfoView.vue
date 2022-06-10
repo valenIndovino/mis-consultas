@@ -26,7 +26,7 @@
         Apellido: {{ medico.apellido }} <br />
         Email: {{ medico.email }} <br />
         Domicilio: Av. Los robles 5422 <br />
-        Trabaja con OSDE, SWISS MEDICAL Y GALENO <br />
+        Trabaja con OSDE, SWISS MEDICAL, GALENO Y OMINT <br />
       </p>
       <p v-else>Este turno sigue sin ser solicitado</p>
     </section>
