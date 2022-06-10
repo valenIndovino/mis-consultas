@@ -5,11 +5,7 @@
       <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-md-9 col-lg-6 col-xl-5">
-            <img
-              src="https://thumbs.dreamstime.com/b/farmac%C3%A9utico-del-doctor-que-presenta-el-fondo-blanco-hombre-aislado-sobre-142901858.jpg"
-              class="img-fluid"
-              alt="Sample image"
-            />
+            <div class="imagen m-4"></div>
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
             <form @click:submit.prevent>
@@ -98,7 +94,6 @@ export default {
   },
   methods: {
     login() {
-      console.log(this.email);
       const URL_USER = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Usuarios";
 
       const json = {
@@ -109,21 +104,17 @@ export default {
         .then((response) => {
           if (response.data[0] != undefined) {
             if (response.data[0].password == this.password) {
-              console.log(response.data[0].admin);
               this.addUser(response.data[0]);
-              //this.$router.push("/home");
               if (response.data[0].admin) {
-                this.$router.push("/home");
+                this.$router.push("/home").catch(() => {});
               } else {
-                this.$router.push("/user");
+                this.$router.push("/user").catch(() => {});
               }
             } else {
               this.error = true;
-              console.log("Contraseña/Usuario incorrecto");
             }
           } else {
             this.error = true;
-            console.log("Contraseña/Usuario incorrecto");
           }
         })
         .catch(function (error) {
@@ -131,9 +122,6 @@ export default {
         });
     },
     addUser(user) {
-      console.log("llamo a la funcion adduser");
-      console.log(user);
-      console.log(user.id);
       const storeUser = {
         nombre: user.nombre,
         apellido: user.apellido,
@@ -161,6 +149,16 @@ export default {
 @media (max-width: 450px) {
   .h-custom {
     height: 100%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .imagen {
+    background-image: url("https://thumbs.dreamstime.com/b/farmac%C3%A9utico-del-doctor-que-presenta-el-fondo-blanco-hombre-aislado-sobre-142901858.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: 500px;
+    width: 500px;
   }
 }
 </style>

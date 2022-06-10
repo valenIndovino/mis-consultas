@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="turno in turnos" :key="turno">
+        <tr v-for="turno in turnos" :key="turno.id">
           <th scope="row">{{ turno.id }}</th>
           <td>{{ getEspecialidadById(turno.especialidad) }}</td>
           <td>{{ turno.fecha }}</td>

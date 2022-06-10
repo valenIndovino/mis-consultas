@@ -35,9 +35,9 @@ export default {
     }, 3000);
     setTimeout(() => {
       if (this.admin) {
-        this.$router.push("/home");
+        this.$router.push("/home").catch(() => {});
       } else {
-        this.$router.push("/user");
+        this.$router.push("/user").catch(() => {});
       }
     }, 5000);
   },

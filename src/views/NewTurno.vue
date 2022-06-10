@@ -66,8 +66,6 @@ export default {
       const estadoId = this.estados.find(
         (item) => item.nombre === "Disponible"
       ).id;
-      console.log("ESPECIALIDAD..", especialidadId);
-      console.log("ESTADO..", estadoId);
       const URL_USER = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos";
       const json = {
         especialidad: especialidadId,
@@ -81,7 +79,9 @@ export default {
         .post(URL_USER, json)
         .then((data) => {
           console.log(data);
-          this.$router.push(`/loading/${"Turno creado con exito"}/${true}`);
+          this.$router
+            .push(`/loading/${"Turno creado con exito"}/${true}`)
+            .catch(() => {});
         })
         .catch((e) => {
           console.log(e);

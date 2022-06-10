@@ -34,7 +34,6 @@ export default {
       "https://628c24e1a3fd714fd02d5a68.mockapi.io/Usuarios"
     );
     this.usuarios = await usuarios.json();
-    console.log("USUARIOS", this.usuarios);
     store.dispatch("addEspecialidades", this.especialidades);
     store.dispatch("addEstados", this.estados);
     store.dispatch("addTurnos", this.turnos);

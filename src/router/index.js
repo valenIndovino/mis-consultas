@@ -73,50 +73,34 @@ const router = new VueRouter({
 });
 
 function checkAdminRights(to, from, next) {
-  console.log(store.getters.getUser, "user");
   if (store.getters.getUser != null) {
     if (store.getters.getUser?.admin) {
-      console.log("Es ADMIN");
       next();
     } else {
-      console.log("Es USER");
       next("/user");
     }
   } else {
     next("/login");
-    console.log("NO ESTA LOGUEADO");
   }
 }
 
 function checkUserRights(to, from, next) {
-  console.log(store.getters.getUser, "user");
   if (store.getters.getUser != null) {
     if (store.getters.getUser?.admin) {
-      console.log("Es USER");
       next("/home");
     } else {
-      console.log("Es USER");
       next();
     }
   } else {
     next("/login");
-    console.log("NO ESTA LOGUEADO");
   }
 }
 
 function checkBoths(to, from, next) {
-  console.log(store.getters.getUser, "user");
   if (store.getters.getUser != null) {
-    if (store.getters.getUser?.admin) {
-      console.log("Es USER");
-      next();
-    } else {
-      console.log("Es USER");
-      next();
-    }
+    next();
   } else {
     next("/login");
-    console.log("NO ESTA LOGUEADO");
   }
 }
 

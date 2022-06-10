@@ -40,7 +40,7 @@ export default {
   methods: {
     logOut() {
       store.dispatch("deleteUser");
-      this.$router.push("/login");
+      this.$router.push("/login").catch(() => {});
     },
   },
 };

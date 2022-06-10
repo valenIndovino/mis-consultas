@@ -63,20 +63,16 @@ export default {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("esto es", data);
-        console.log("ESTADO", store.getters.getEstados[1].id);
-        console.log("ESTADO NOMBRE", store.getters.getEstados[1].nombre);
         const filtrado = data.filter(
           (item) => item.estado == store.getters.getEstados[1].id
         );
-        console.log("FILTRADO", filtrado);
         this.turnos = filtrado;
       })
       .catch((err) => console.log(err.message));
   },
   methods: {
     async crearTurno() {
-      this.$router.push("/newTurno");
+      this.$router.push("/newTurno").catch(() => {});
     },
   },
 };

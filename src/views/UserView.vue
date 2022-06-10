@@ -67,7 +67,6 @@ export default {
         this.turnosSolicitados = filtrado;
       })
       .catch((err) => console.log(err.message));
-    console.log(this.turnosSolicitados);
   },
 };
 </script>

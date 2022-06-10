@@ -87,13 +87,12 @@ export default {
             )
             .then((data) => {
               console.log(data);
-              this.$router.push(
-                `/loading/${"Turno solicitado con exito"}/${false}`
-              );
+              this.$router
+                .push(`/loading/${"Turno solicitado con exito"}/${false}`)
+                .catch(() => {});
             });
         })
         .catch((err) => console.log(err.message));
-      console.log("TURNO", this.turno);
     },
     getImage() {
       const imagen = store.getters.getEspecialidades.find(
@@ -114,9 +113,7 @@ export default {
       return estado.nombre;
     },
     getNombre(id) {
-      console.log("STORERRR", store.getters.getUsuarios);
       const paciente = store.getters.getUsuarios.find((item) => item.id === id);
-      console.log(paciente);
       const nombreCompleto = paciente.nombre + " " + paciente.apellido;
       return nombreCompleto;
     },

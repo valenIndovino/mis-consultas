@@ -2,6 +2,12 @@
   <div class="home">
     <AppHeader />
     <router-view />
+    <div>
+      <h2 v-if="turnosDisponibles.length > 0" class="mt-4">
+        Turnos Disponibles
+      </h2>
+      <h2 v-else class="mt-4">Lo sentimos, no hay turnos disponibles</h2>
+    </div>
     <div class="row">
       <AppIndex
         v-for="turno in turnosDisponibles"

@@ -101,7 +101,36 @@ export default {
       );
       return estado.nombre;
     },
-    eliminarTurno() {},
+    eliminarTurno() {
+      const URL =
+        "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/?id=" +
+        this.turno.id;
+
+      fetch(URL, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((response) => {
+          (this.turno.especialidad = response[0].especialidad),
+            (this.turno.admin = response[0].admin),
+            (this.turno.user = null),
+            (this.turno.estado = store.getters.getEstados[0].id),
+            (this.turno.id = response[0].id),
+            (this.turno.fecha = response[0].fecha);
+          axios
+            .delete(
+              "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/" +
+                this.turno.id,
+              { headers: this.turno }
+            )
+            .then((data) => {
+              console.log(data);
+              this.$router
+                .push(`/loading/${"Turno eliminado con exito"}/${true}`)
+                .catch(() => {});
+            });
+        });
+    },
     cancelarTurno() {
       const URL =
         "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos/?id=" +
@@ -126,9 +155,9 @@ export default {
             )
             .then((data) => {
               console.log(data);
-              this.$router.push(
-                `/loading/${"Turno cancelado con exito"}/${false}`
-              );
+              this.$router
+                .push(`/loading/${"Turno cancelado con exito"}/${false}`)
+                .catch(() => {});
             });
         });
     },
