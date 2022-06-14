@@ -8,6 +8,7 @@ import NewTurno from "../views/NewTurno.vue";
 import UserView from "../views/UserView.vue";
 import LoadingView from "../views/LoadingView.vue";
 import DisponiblesView from "../views/DisponiblesView.vue";
+import EstadisticasView from "../views/EstadisticasView.vue";
 import store from "../store/store.js";
 
 Vue.use(VueRouter);
@@ -56,9 +57,15 @@ const routes = [
   },
   {
     path: "/disponibles",
-    name: "dispoibles",
+    name: "disponibles",
     beforeEnter: checkUserRights,
     component: DisponiblesView,
+  },
+  {
+    path: "/estadisticas",
+    name: "estadisticas",
+    beforeEnter: checkAdminRights,
+    component: EstadisticasView,
   },
   {
     path: "/loading/:msg/:admin",

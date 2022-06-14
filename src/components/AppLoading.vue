@@ -1,6 +1,7 @@
 <template>
   <div>
-    <AppHeader />
+    <AppHeader v-if="isAdmin" :admin="true" />
+    <AppHeader v-else />
     <br /><br /><br /><br /><br /><br /><br /><br /><br />
     <div v-if="this.spinner" class="align-center m-1">
       <div class="spinner-border text-primary">
@@ -18,11 +19,13 @@
 
 <script>
 import AppHeader from "../components/AppHeader.vue";
+import store from "../store/store";
 
 export default {
   data() {
     return {
       spinner: true,
+      isAdmin: store.getters.getUser.admin,
     };
   },
   components: {

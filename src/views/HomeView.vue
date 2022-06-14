@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <AppHeader />
+    <AppHeader v-bind:admin="true" />
     <router-view />
     <div class="principal vertical-centered-text" id="home">
       <div class="col-md-8 cta">

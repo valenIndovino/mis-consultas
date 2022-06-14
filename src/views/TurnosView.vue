@@ -1,6 +1,7 @@
 <template>
   <div class="about">
-    <AppHeader />
+    <AppHeader v-if="admin" v-bind:admin="true" />
+    <AppHeader v-else />
     <router-view />
     <h1>Turnos</h1>
     <table class="table table-hover table-primary">
@@ -41,6 +42,7 @@ export default {
   data() {
     return {
       turnos: [],
+      admin: store.getters.getUser.admin,
     };
   },
   components: {

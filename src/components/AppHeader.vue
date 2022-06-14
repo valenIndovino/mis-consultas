@@ -23,6 +23,11 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/turnos">Mis turnos</router-link>
           </li>
+          <li v-if="isAdmin" class="nav-item">
+            <router-link class="nav-link" to="/estadisticas"
+              >Estadisticas</router-link
+            >
+          </li>
           <li class="nav-item">
             <a class="nav-link" v-on:click="logOut()">Cerrar Sesion</a>
           </li>
@@ -37,6 +42,12 @@ import store from "../store/store.js";
 
 export default {
   name: "AppHeader",
+  props: ["admin"],
+  data() {
+    return {
+      isAdmin: this.admin,
+    };
+  },
   methods: {
     logOut() {
       store.dispatch("deleteUser");

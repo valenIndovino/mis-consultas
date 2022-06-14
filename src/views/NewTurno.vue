@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppHeader />
+    <AppHeader v-bind:admin="true" />
     <form
       style="width: 500px; text-align: center; height: 500px"
       class="border border-primary rounded m-4 mx-auto"

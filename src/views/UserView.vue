@@ -4,7 +4,7 @@
     <router-view />
     <div class="principalUser vertical-centered-text" id="home">
       <div class="col-md-8 cta">
-        <h1 style="font-weight: bold">HOLA, PACIENTE</h1>
+        <h1 style="font-weight: bold">HOLA, {{ getNombre() }}</h1>
         <h4>
           Este es tu lugar ideal para que puedas solicitar todos los turnos que
           quieras y tenerlos siempre cerca tuyo
@@ -51,6 +51,11 @@ export default {
     return {
       turnosSolicitados: [],
     };
+  },
+  methods: {
+    getNombre() {
+      return store.getters.getUser.nombre.toUpperCase();
+    },
   },
   mounted() {
     const id = store.getters.getUser.id;
