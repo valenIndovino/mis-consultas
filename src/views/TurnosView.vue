@@ -1,7 +1,6 @@
 <template>
   <div class="about">
-    <AppHeader v-if="admin" v-bind:admin="true" />
-    <AppHeader v-else />
+    <AppHeader :admin="admin" />
     <router-view />
     <h1>Turnos</h1>
     <table class="table table-hover table-primary">

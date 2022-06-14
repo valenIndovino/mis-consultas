@@ -1,7 +1,6 @@
 <template>
   <div>
-    <AppHeader v-if="isAdmin" :admin="true" />
-    <AppHeader v-else />
+    <AppHeader :admin="isAdmin" />
     <br /><br /><br /><br /><br /><br /><br /><br /><br />
     <div v-if="this.spinner" class="align-center m-1">
       <div class="spinner-border text-primary">

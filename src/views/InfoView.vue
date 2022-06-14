@@ -1,7 +1,6 @@
 <template>
   <div class="mx-auto">
-    <AppHeader v-if="admin" v-bind:admin="true" />
-    <AppHeader v-else />
+    <AppHeader :admin="admin" />
     <section>
       <h1>Informacion del Turno</h1>
       <p>

@@ -157,6 +157,7 @@ export default {
       }
 
       const set = new Set(users);
+
       return set.size - 1;
     },
     getCantEspecialidades(especialidad) {
