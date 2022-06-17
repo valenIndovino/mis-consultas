@@ -157,8 +157,13 @@ export default {
       }
 
       const set = new Set(users);
+      let final = [];
 
-      return set.size - 1;
+      set.forEach((item) => {
+        if (item != null) final.push(item);
+      });
+
+      return final.length;
     },
     getCantEspecialidades(especialidad) {
       const total = this.especialidades.length;

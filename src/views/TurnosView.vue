@@ -105,35 +105,44 @@ export default {
       let idEspecialidad = this.especialidades.find(
         (item) => item.nombre == this.specialty
       );
-      console.log("ESTADO", idEstado);
-      console.log("ESPECIALIADD", idEspecialidad);
       let url = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos";
-      if (idEstado != undefined) {
-        url = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos";
-        url = url + "/?estado=" + idEstado.id;
+      const user = store.getters.getUser;
+      if (user.admin) {
+        url = url + "/?admin=" + user.id;
+      } else {
+        url = url + "/?user=" + user.id;
       }
-      if (idEspecialidad != undefined) {
-        url = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos";
-        url = url + "/?especialidad=" + idEspecialidad.id;
-      }
-      if (idEstado != undefined && idEspecialidad != undefined) {
-        url = "https://628c24e1a3fd714fd02d5a68.mockapi.io/Turnos";
-        url =
-          url +
-          "/?especialidad=" +
-          idEspecialidad.id +
-          "/?estado=" +
-          idEstado.id;
-      }
+
       this.turnos = [];
       fetch(url, {
         method: "GET",
       })
         .then((res) => res.json())
         .then((data) => {
-          data.map((item) => {
-            this.turnos.push(item);
-          });
+          if (idEstado != undefined && idEspecialidad != undefined) {
+            data.forEach((item) => {
+              if (
+                item.estado == idEstado.id &&
+                item.especialidad == idEspecialidad.id
+              ) {
+                this.turnos.push(item);
+              }
+            });
+          } else if (idEstado != undefined) {
+            data.forEach((item) => {
+              if (item.estado == idEstado.id) {
+                this.turnos.push(item);
+              }
+            });
+          } else if (idEspecialidad != undefined) {
+            data.forEach((item) => {
+              if (item.especialidad == idEspecialidad.id) {
+                this.turnos.push(item);
+              }
+            });
+          } else {
+            data.forEach((item) => this.turnos.push(item));
+          }
         })
         .catch((err) => console.log(err.message));
     },
