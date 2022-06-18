@@ -120,26 +120,20 @@ export default {
         .then((res) => res.json())
         .then((data) => {
           if (idEstado != undefined && idEspecialidad != undefined) {
-            data.forEach((item) => {
-              if (
+            let filtrado = data.filter(
+              (item) =>
                 item.estado == idEstado.id &&
                 item.especialidad == idEspecialidad.id
-              ) {
-                this.turnos.push(item);
-              }
-            });
+            );
+            this.turnos = filtrado;
           } else if (idEstado != undefined) {
-            data.forEach((item) => {
-              if (item.estado == idEstado.id) {
-                this.turnos.push(item);
-              }
-            });
+            let filtrado = data.filter((item) => item.estado == idEstado.id);
+            this.turnos = filtrado;
           } else if (idEspecialidad != undefined) {
-            data.forEach((item) => {
-              if (item.especialidad == idEspecialidad.id) {
-                this.turnos.push(item);
-              }
-            });
+            let filtrado = data.filter(
+              (item) => item.especialidad == idEspecialidad.id
+            );
+            this.turnos = filtrado;
           } else {
             data.forEach((item) => this.turnos.push(item));
           }
