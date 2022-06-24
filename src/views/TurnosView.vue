@@ -33,7 +33,8 @@
           <th scope="col">Especialidad</th>
           <th scope="col">Fecha y Hora</th>
           <th scope="col">Estado</th>
-          <th scope="col">Id Paciente</th>
+          <th v-if="admin" scope="col">Paciente</th>
+          <th v-else scope="col">Médico</th>
           <th scope="col">Info</th>
         </tr>
       </thead>
@@ -43,8 +44,11 @@
           <td>{{ getEspecialidadById(turno.especialidad) }}</td>
           <td>{{ turno.fecha }}</td>
           <td>{{ getEstadoById(turno.estado) }}</td>
-          <td v-if="turno.user == null">Sin solicitar</td>
-          <td v-else>{{ turno.user }}</td>
+          <td v-if="turno.user == null" style="font-weight: bold">
+            Sin solicitar
+          </td>
+          <td v-else-if="admin">{{ getFullName(turno.user) }}</td>
+          <td v-else>{{ getFullName(turno.admin) }}</td>
           <td>
             <router-link :to="{ name: 'info', params: { turno: turno.id } }"
               >Mas Info</router-link
@@ -96,6 +100,10 @@ export default {
   methods: {
     getEspecialidadById(id) {
       return store.getters.getEspecialidadById(id);
+    },
+    getFullName(id) {
+      let user = store.getters.getUsuarios.find((item) => item.id == id);
+      return user.nombre + " " + user.apellido;
     },
     getEstadoById(id) {
       return store.getters.getEstadoById(id);

@@ -4,7 +4,9 @@
     <router-view />
     <div class="principal vertical-centered-text" id="home">
       <div class="col-md-8 cta">
-        <h1 style="font-weight: bold">BIENVENIDO</h1>
+        <h1 style="font-weight: bold">
+          BIENVENIDO, DR {{ lastName.toUpperCase() }}
+        </h1>
         <h4>
           Este software esta diseñado para que puedas tener todas tus consultas
           al alcance de tu mano
@@ -48,6 +50,7 @@ export default {
   data() {
     return {
       turnos: [],
+      lastName: store.getters.getUser.apellido,
     };
   },
   components: {
