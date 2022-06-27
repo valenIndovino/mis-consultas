@@ -18,7 +18,7 @@
       </div>
     </div>
     <div>
-      <h2 class="mt-4">Proximos turnos</h2>
+      <h2 class="mt-4">Proximos Turnos</h2>
     </div>
     <div class="row">
       <AppIndex
