@@ -1,16 +1,9 @@
-# PROYECTO NUEVAS TECNOLOGIAS 2
+# MIS CONSULTAS
 
-## Idea del proyecto
-```
-Sistema sobre la gestion de turnos para un consultorio medico
-```
+## Enter as an admin/doctor
+Username: admin@admin.com
+Password: admin123
 
-### Entorno de desarrollo
-```
-VUE.JS
-```
-
-### Año
-```
-Julio 2022
-```
+## Enter as a pacient
+Username: user@user.com
+Password: user123
